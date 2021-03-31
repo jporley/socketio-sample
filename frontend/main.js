@@ -8,13 +8,10 @@ const fallback = document.querySelector(".fallback");
 
 let userName = "";
 
-const newUserConnected = (user) => {
-  userName = user || `User${Math.floor(Math.random() * 1000000)}`;
-  socket.emit("new user", userName);
-  addToUsersBox(userName);
-};
-
-const addToUsersBox = (userName) => {
+/**
+ * DOM manipulation methods
+ */
+ const addToUsersBox = (userName) => {
   if (!!document.querySelector(`.${userName}-userlist`)) {
     return;
   }
@@ -55,9 +52,29 @@ const addNewMessage = ({ user, message }) => {
   messageBox.innerHTML += user === userName ? myMsg : receivedMsg;
 };
 
-// new user is created so we generate nickname and emit event
+/**
+ * User connection management
+ */ 
+const newUserConnected = (user) => {
+  userName = user || `User${Math.floor(Math.random() * 1000000)}`;
+  socket.emit("new user", userName);
+  addToUsersBox(userName);
+};
+
+// new user is created so we generate its nickname and emit event
 newUserConnected();
 
+socket.on("new user", function (data) {
+  data.map((user) => addToUsersBox(user));
+});
+
+socket.on("user disconnected", function (userName) {
+  document.querySelector(`.${userName}-userlist`).remove();
+});
+
+/**
+ * Message management
+ */
 messageForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (!inputField.value) {
@@ -79,19 +96,14 @@ inputField.addEventListener("keyup", () => {
   });
 });
 
-socket.on("new user", function (data) {
-  data.map((user) => addToUsersBox(user));
-});
-
-socket.on("user disconnected", function (userName) {
-  document.querySelector(`.${userName}-userlist`).remove();
-});
-
 socket.on("chat message", function (data) {
   addNewMessage({ user: data.nick, message: data.message });
 });
 
 
+/**
+ * Typing status management
+ */
 socket.on("typing", function (data) {
   const { isTyping, nick } = data;
 
