@@ -1,0 +1,105 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-y: hidden;
+}
+
+p {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.inbox {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-grow: 1;
+  align-items: stretch;
+  border: 2px solid #CCCCCC;
+}
+
+.inbox__people {
+  flex-basis: 25%;
+  padding: 0 20px;
+  border-right: 2px solid #CCCCCC;
+  background-color:gainsboro;
+}
+
+.inbox__messages {
+  flex: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 20px;
+}
+
+.messages__history {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  height: calc(100vh - 160px);
+  overflow-y: auto;
+}
+
+.messages__history > div {
+  display: flex;
+  width: 60%;
+  margin-bottom: 10px;
+}
+
+.messages__history > div > div {
+  flex: 1;
+}
+
+.outgoing__message {
+  align-self: flex-end;
+}
+
+.messages__history p {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.received__message p {
+  background-color: rgb(199, 199, 199);
+}
+
+.sent__message p {
+  background-color: rgb(46, 148, 250);
+}
+
+.incoming__message {
+  align-self: flex-start;
+}
+
+.message__info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+.fallback p {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.message_form {
+  padding-top: 20px;
+  display: flex;
+}
+
+.message_form input {
+  font-size: 20px;
+  outline: none;
+  border: none;
+  height: 40px;
+  flex-grow: 1;
+  margin-right: 20px;
+}
