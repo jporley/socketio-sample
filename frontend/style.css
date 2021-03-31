@@ -44,7 +44,7 @@ p {
   box-sizing: border-box;
   display: flex;
   flex-flow: column nowrap;
-  height: calc(100vh - 160px);
+  height: calc(100vh - 167px);
   overflow-y: auto;
 }
 
