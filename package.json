@@ -1,14 +1,13 @@
 {
   "name": "sockets-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sample Socket.io Chat app",
   "main": "index.js",
   "scripts": {
-    "watch": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["socket", "socketio", "socket.io", "websocket"],
+  "author": "Juan Porley",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
